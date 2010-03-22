@@ -141,12 +141,12 @@ static int __init fitpc2_init(void)
 
 	tz[0]->dev = thermal_zone_device_register("FITPC2-1", 0, NULL,
 						  &fitpc2_ops, 0, 0, 0, 0);
-	if (!tz[0])
+	if (!tz[0]->dev)
 		return -EBUSY;
 
 	tz[1]->dev = thermal_zone_device_register("FITPC2-2", 0, NULL,
 						  &fitpc2_ops, 0, 0, 0, 0);
-	if (!tz[1])
+	if (!tz[1]->dev)
 		return -EBUSY;
 
 	return 0;
