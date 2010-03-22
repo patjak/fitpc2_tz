@@ -1,0 +1,10 @@
+Name:		fitpc2_tz
+Author:		Patrik Jakobsson <patrik.jakobsson@home.se>
+License:	GPLv2
+Description:
+This driver reads two thermal sensors on the FIT-PC2.  It is based on a
+bash script released by Compulab in 2009. The script can be found at:
+http://www.fit-pc2.com/forum/viewtopic.php?f=9&t=401
+
+Known problems:
+The readings are not very accurate. They seem to vary ~5 C on my system.
