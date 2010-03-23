@@ -27,7 +27,7 @@
 #include <linux/thermal.h>
 #include <linux/dmi.h>
 
-#define REG_DELAY	100
+#define REG_DELAY	1
 #define PCI_PORT5_MCR	0xD0
 #define PCI_PORT5_MDR	0xD4
 #define TEMP1_MASK	0x000000FF
