@@ -34,9 +34,10 @@
 #define TEMP1_SHIFT	0
 #define TEMP2_MASK	0x0000FF00
 #define TEMP2_SHIFT	8
-
 #define B0_INIT		0xFFFFFFFF
 #define B0_EXIT		0x00000000
+#define TEMP_CRIT	119
+#define TEMP_TRIP	119
 
 struct pci_dev *pdev;
 struct mutex read_mutex;
@@ -118,8 +119,36 @@ static int get_temp(struct thermal_zone_device *thermal_zone,
 	return 0;
 }
 
+static int get_crit_temp(struct thermal_zone_device *tz, unsigned long *temperature)
+{
+	*temperature = TEMP_CRIT;
+
+	return 0;
+}
+
+static int get_trip_type(struct thermal_zone_device *tz, int trip,
+			 enum thermal_trip_type *type)
+{
+	if (trip == 0)
+		*type = THERMAL_TRIP_ACTIVE;
+
+	return 0;
+}
+
+static int get_trip_temp(struct thermal_zone_device *tz, int trip,
+			 unsigned long *temperature)
+{
+	if (trip == 0)
+		*temperature = TEMP_TRIP;
+
+	return 0;
+}
+
 struct thermal_zone_device_ops fitpc2_ops = {
 	.get_temp = get_temp,
+	.get_crit_temp = get_crit_temp,
+	.get_trip_temp = get_trip_temp,
+	.get_trip_type = get_trip_type,
 };
 
 static int __init fitpc2_init(void)
